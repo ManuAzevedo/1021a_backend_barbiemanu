@@ -1,5 +1,5 @@
 import {describe,test,expect} from 'vitest'
-import BancoEmMemoria from './banco-em-memoria'
+import BancoMongoDB from '.banco-mongodb'
 describe("Banco em memória",()=>{
     test("Deve salvar no banco em memória",async()=>{
         const input= {
@@ -8,10 +8,9 @@ describe("Banco em memória",()=>{
             descricao:"test",
             foto:"test",
         }
-        const bancoEmMemoria = new BancoEmMemoria();
-        const result = await bancoEmMemoria.salvar(input)
+        const BancoMongoDB = new BancoMongoDB();
+        const result = await BancoMongoDB.salvar(input)
         expect(result).toBe(true)
-        expect(bancoEmMemoria.dados).toHaveLength(1)
-        expect(bancoEmMemoria.dados).toEqual([input])
+        
     })
 })
