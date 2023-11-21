@@ -1,19 +1,22 @@
-import FilmeRepositorioInterface from "../../aplicacao/filme-repositorio-interface"
+import FilmeRepositorioInterface from "../../aplicacao/filme-repositorio-interface";
 export default class BancoEmMemoria implements FilmeRepositorioInterface{
-    public dados:any[] = []
+    public dados:Filme[] = []
     constructor(){}
-    public salvar(input):promise<boolean>{
+    public salvar(input:Filme):Promise<boolean>{
         this.dados.push(input)
         return new Promise((resolve,reject)=>{
-         setTimeout(()=>resolve(true),1000)
-
+            setTimeout(()=>resolve(true),10)
+        })
+    }
+    public listar():Promise<Filme[]>{
+        return new Promise((resolve,reject)=>{
+            resolve(this.dados)
         })
     }
 }
-
 type Filme = {
     id:number,
     titulo:string,
     descricao:string,
-    foto:string,
+    foto:string
 }
